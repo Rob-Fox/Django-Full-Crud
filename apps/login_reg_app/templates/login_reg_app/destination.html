@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ destination }}</title>
+    <style>
+    
+    .logout{
+            float: right;
+            margin-left:15px;
+    }
+    
+    </style>
+</head>
+<body>
+    <a class='logout' href='/'>Logout</a>
+    <a class='logout' href='/success'>Home</a>
+    <h2>{{ destination }}</h2>
+    <P>Planned By: {{ planner.user_name }}</P>
+    <P>Description: {{ description }}</P>
+    <P>Travel Date From: {{ s_date }}</P>
+    <P>Travel Date To: {{ e_date }}</P>
+    <br>
+    <br>
+    <br>
+    <br>
+    <h3>Other Users joining the trip:</h3>
+    {% for item in joiners %}
+        <p>{{ item.user_name }}</p>
+    {% endfor %}
+</body>
+</html>

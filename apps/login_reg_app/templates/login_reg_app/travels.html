@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Travels</title>
+    <style>
+    
+        #table_2{
+            margin-top: 50px;
+            display: inline-block;
+        }
+        #table_1{
+            /* margin-top: 10px; */
+            display: inline-block;
+        }
+        #td{
+            /* display: inline-block; */
+            /* margin-right:50px; */
+            /* text-align:left; */
+        }
+        table{
+            border-style: solid;
+            border-color: black;
+            border-width: 2px;
+            /* width: 800px; */
+            /* height:300px; */
+        }
+        /* tr{
+            border-style: solid;
+            border-color: black;
+            border-width: 2px;
+        } */
+        #logout{
+            float: right;
+        }
+    </style>
+</head>
+<body>
+    <a id='logout' href='/'>Logout</a>
+    <h3>Welcome {{name}}.</h3>
+    <span id='table_1'>Your Trip Schedules</span>
+    <table>
+        <thead>
+            <td>Destination</td>
+            <td>Travel Start Date</td>
+            <td>Travel End Date</td>
+            <td>Plan</td>
+        </thead>
+        <tbody>
+            {% for item in users_trips %}
+                <tr>
+                    <td><a href='success/destination/{{item.id}}'>{{ item.destination }}</a></td>
+                    <td>{{ item.s_date }}</td>
+                    <td>{{ item.e_date }}</td>
+                    <td>{{ item.description }}</td>
+                </tr>
+            {% endfor %}
+            {% for item in more_users_trips %}
+                <tr>
+                    <td><a href='success/destination/{{item.id}}'>{{ item.destination }}</a></td>
+                    <td>{{ item.s_date }}</td>
+                    <td>{{ item.e_date }}</td>
+                    <td>{{ item.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <span id='table_2'>Other User's Travel Plans</span>
+    <table>
+        <thead>
+            <td>Name</td>
+            <td>Destination</td>
+            <td id='td'>Travel Start Date</td>
+            <td id='td'>Travel End Date</td>
+            <td id='td'>Do you want to join?</td>
+        </thead>
+        <tbody>
+            {% for item in others_trips %}
+                <tr>
+                    <td>{{ item.planner.user_name }}</td>
+                    <td><a href='success/destination/{{item.id}}'>{{ item.destination }}</a></td>
+                    <td>{{ item.s_date }}</td>
+                    <td>{{ item.e_date }}</td>
+                    <td>{{ item.plan }}</td>
+                    <td><a href='/success/join/{{ item.id }}'>Join</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    <a href='/success/add'>Add Travel Plan</a>
+    {% if request.session.user == 1%}
+    <br>
+    <a href='/delete'>Delete all trips</a>
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add A Trip</title>
+    <style>
+    
+    form{
+        width:300px;
+    }
+    .logout{
+            float: right;
+            margin-left:15px;
+    }
+    </style>
+</head>
+<body>
+    <a class='logout' href='/'>Logout</a>
+    <a class='logout' href='/success'>Home</a>
+    <h2>Add A Trip</h2>
+
+    <form action='/success/add/proc' method=post>
+        {% csrf_token %}
+        Destination: <input type='text' name='destination'><br><br>
+        Description: <input type='text' name='description'><br><br>
+        Start Date: <input type="date" name='s_date'><br><br>
+        End Date: <input type='date' name='e_date'><br><br>
+        <input type="submit" value='Add'>
+    </form>
+</body>
+</html>
